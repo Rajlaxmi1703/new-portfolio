@@ -9,26 +9,27 @@ const modulesData = [
     desc:'Build responsive, modern websites using HTML5, CSS3, JavaScript, and cutting-edge frameworks.',
     link:'web-development.html'
   },
+   {
+  num:'02', icon:'🎨', title:'UI/UX Design',
+  desc:'Design beautiful and user-friendly interfaces using Figma. Creating wireframes, prototypes and interactive designs.',
+  link:'ui-ux-design.html'
+},
   {
-    num:'02', icon:'✏️', title:'CAD Design',
+    num:'03', icon:'✏️', title:'CAD Design',
     desc:'Master 2D/3D modeling with professional computer-aided design software and parametric modeling.',
     link:'cad-design.html'
   },
   {
-    num:'03', icon:'🖨️', title:'3D Printing',
+    num:'04', icon:'🖨️', title:'3D Printing',
     desc:'Learn additive manufacturing techniques, materials science, and rapid prototyping methods.',
     link:'3d-printing.html'
   },
   {
-    num:'04', icon:'🔬', title:'Laser Cutting',
+    num:'05', icon:'🔬', title:'Laser Cutting',
     desc:'Master precision cutting and engraving with laser technology for various materials.',
     link:'lasercutting.html'
   },
-  {
-    num:'05', icon:'⚙️', title:'Embedded Systems',
-    desc:'Program microcontrollers, sensors, and build intelligent embedded hardware solutions.',
-    link:'embedded-systems.html'
-  },
+  
   {
     num:'06', icon:'🔌', title:'PCB Design',
     desc:'Design professional printed circuit boards for custom electronics projects.',
