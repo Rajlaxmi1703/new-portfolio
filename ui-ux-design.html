@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>UI/UX Design — Rajlaxmi Rede</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+
+    /* ── PAGE HERO ── */
+    .mod-hero {
+      padding: 130px 0 60px;
+      background: linear-gradient(135deg,#1a1245 0%,#2d1b6b 40%,#1a1245 100%);
+      position: relative; overflow: hidden;
+    }
+    .mod-hero::before {
+      content:''; position:absolute; inset:0;
+      background-image: radial-gradient(rgba(255,255,255,0.04) 1px, transparent 1px);
+      background-size: 28px 28px;
+    }
+    .mod-hero .inner {
+      position:relative; z-index:1;
+      max-width:1200px; margin:0 auto; padding:0 24px;
+    }
+    .back-link {
+      display:inline-flex; align-items:center; gap:8px;
+      color:rgba(255,255,255,0.55); font-size:0.84rem; font-weight:500;
+      margin-bottom:28px; transition:color 0.2s; text-decoration:none;
+    }
+    .back-link:hover { color:#fff; }
+    .mod-page-tag {
+      display:inline-block; padding:5px 16px; border-radius:100px;
+      background:rgba(108,99,255,0.25); color:#a78bfa;
+      font-size:0.72rem; font-weight:700; letter-spacing:0.14em;
+      text-transform:uppercase; margin-bottom:16px;
+    }
+    .mod-page-title {
+      font-family:'Playfair Display',serif;
+      font-size:clamp(2rem,5vw,3.5rem);
+      font-weight:800; color:#fff; line-height:1.1; margin-bottom:16px;
+    }
+    .mod-page-title span { color:#6c63ff; }
+    .mod-page-desc {
+      font-size:1rem; color:rgba(255,255,255,0.6);
+      line-height:1.8; max-width:600px; margin-bottom:32px;
+    }
+    .mod-meta { display:flex; flex-wrap:wrap; gap:12px; }
+    .mod-meta-item {
+      display:flex; align-items:center; gap:8px;
+      background:rgba(255,255,255,0.07);
+      border:1px solid rgba(255,255,255,0.12);
+      padding:8px 16px; border-radius:8px;
+      font-size:0.78rem; font-weight:600;
+      color:rgba(255,255,255,0.7);
+    }
+    .mod-meta-item i { color:#6c63ff; }
+
+    /* ── CONTENT ── */
+    .mod-content { padding:60px 0; background:var(--bg); }
+    .mod-content .inner {
+      max-width:1200px; margin:0 auto; padding:0 24px;
+      display:grid; grid-template-columns:1fr 300px;
+      gap:40px; align-items:start;
+    }
+
+    /* ── CONTENT BLOCK ── */
+    .content-block {
+      background:var(--white); border:1px solid var(--border);
+      border-radius:var(--r); padding:32px; margin-bottom:24px;
+    }
+    .content-block h2 {
+      font-family:'Playfair Display',serif;
+      font-size:1.35rem; font-weight:800; color:var(--dark);
+      margin-bottom:16px; display:flex; align-items:center; gap:10px;
+    }
+    .content-block h2 i { color:#6c63ff; }
+    .content-block p {
+      font-size:0.93rem; color:var(--muted);
+      line-height:1.85; margin-bottom:12px;
+    }
+    .content-block p:last-child { margin-bottom:0; }
+
+    /* ── TOPIC ITEM ── */
+    .topic-item {
+      display:flex; align-items:center; gap:10px;
+      font-size:0.87rem; color:var(--muted); margin-bottom:8px;
+    }
+    .topic-item i { color:#6c63ff; flex-shrink:0; }
+
+    /* ── PROJECT CARD ── */
+    .project-showcase {
+      background:var(--white); border:1px solid var(--border);
+      border-radius:var(--r); overflow:hidden; margin-bottom:24px;
+    }
+    .project-showcase-header {
+      padding:20px 28px;
+      background:linear-gradient(135deg,#f0eeff,#e8e4ff);
+      border-bottom:1px solid var(--border);
+      display:flex; align-items:center; gap:14px;
+    }
+    .project-badge {
+      width:44px; height:44px; border-radius:10px;
+      background:#6c63ff; color:#fff;
+      display:flex; align-items:center; justify-content:center;
+      font-size:1.2rem; flex-shrink:0;
+    }
+    .project-name {
+      font-size:1.05rem; font-weight:800; color:var(--dark);
+    }
+    .project-type {
+      font-size:0.75rem; color:var(--muted); font-weight:500;
+    }
+    .project-body { padding:28px; }
+    .project-body p {
+      font-size:0.92rem; color:var(--muted);
+      line-height:1.85; margin-bottom:14px;
+    }
+    .project-body p:last-child { margin-bottom:0; }
+    .project-body strong { color:var(--dark); }
+
+    /* ── PROJECT TAGS ── */
+    .project-tags {
+      display:flex; flex-wrap:wrap; gap:7px; margin-bottom:20px;
+    }
+    .project-tag {
+      padding:5px 14px; border-radius:100px;
+      background:var(--primary-l); color:var(--primary);
+      font-size:0.72rem; font-weight:600;
+      border:1px solid rgba(108,99,255,0.2);
+    }
+
+    /* ── FIGMA PREVIEW ── */
+    .figma-previews {
+      display:grid; grid-template-columns:1fr 1fr;
+      gap:14px; margin-top:20px;
+    }
+    .figma-btn {
+      display:flex; align-items:center; justify-content:center; gap:10px;
+      padding:14px 20px; border-radius:10px;
+      background:var(--primary); color:#fff;
+      text-decoration:none; font-size:0.82rem; font-weight:700;
+      letter-spacing:0.04em; transition:var(--tr);
+      border:2px solid var(--primary);
+    }
+    .figma-btn:hover {
+      background:var(--primary-d);
+      transform:translateY(-2px);
+      box-shadow:0 8px 24px rgba(108,99,255,0.35);
+    }
+    .figma-btn.outline {
+      background:transparent; color:var(--primary);
+    }
+    .figma-btn.outline:hover {
+      background:var(--primary); color:#fff;
+    }
+    .figma-btn i { font-size:1rem; }
+
+    /* ── SCREEN MOCKUP ── */
+    .mockup-area {
+      background:linear-gradient(135deg,#1a1245,#2d1b6b);
+      border-radius:12px; padding:28px;
+      display:flex; justify-content:center; align-items:center;
+      gap:16px; flex-wrap:wrap; margin-top:20px; min-height:180px;
+    }
+    .mockup-screen {
+      background:rgba(255,255,255,0.1);
+      border:2px solid rgba(255,255,255,0.2);
+      border-radius:10px; padding:16px;
+      text-align:center; color:#fff; min-width:100px;
+    }
+    .mockup-screen i { font-size:1.8rem; margin-bottom:8px; display:block; }
+    .mockup-screen span { font-size:0.72rem; font-weight:600; display:block; }
+
+    /* ── SIDEBAR ── */
+    .sidebar-card {
+      background:var(--white); border:1px solid var(--border);
+      border-radius:var(--r); padding:22px; margin-bottom:20px;
+    }
+    .sidebar-card h3 {
+      font-size:0.82rem; font-weight:800; color:var(--dark);
+      text-transform:uppercase; letter-spacing:0.08em; margin-bottom:16px;
+    }
+    .progress-item { margin-bottom:14px; }
+    .progress-item:last-child { margin-bottom:0; }
+    .progress-label {
+      display:flex; justify-content:space-between;
+      font-size:0.76rem; font-weight:600;
+      color:var(--text); margin-bottom:5px;
+    }
+    .progress-bar {
+      height:6px; background:var(--border);
+      border-radius:100px; overflow:hidden;
+    }
+    .progress-fill {
+      height:100%; border-radius:100px;
+      background:linear-gradient(90deg,#6c63ff,#a78bfa);
+    }
+    .detail-item {
+      display:flex; align-items:center; gap:10px;
+      font-size:0.82rem; color:var(--muted); margin-bottom:10px;
+    }
+    .detail-item:last-child { margin-bottom:0; }
+    .detail-item i { color:#6c63ff; width:14px; }
+    .res-link {
+      display:flex; align-items:center; gap:10px;
+      padding:10px 12px; border-radius:var(--r-sm);
+      border:1px solid var(--border); font-size:0.8rem; font-weight:600;
+      color:#6c63ff; text-decoration:none; transition:var(--tr); margin-bottom:8px;
+    }
+    .res-link:last-child { margin-bottom:0; }
+    .res-link:hover {
+      background:var(--primary-l);
+      border-color:rgba(108,99,255,0.3);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media(max-width:900px) {
+      .mod-content .inner { grid-template-columns:1fr; }
+      .mod-sidebar { order:-1; }
+      .figma-previews { grid-template-columns:1fr; }
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- ── NAVBAR ── -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <i class="fas fa-microchip"></i> Rajlaxmi <span>FABLAB</span>
+      </a>
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="index.html#home"     class="nav-link">Home</a></li>
+        <li><a href="index.html#about"    class="nav-link">About</a></li>
+        <li><a href="index.html#projects" class="nav-link">Projects</a></li>
+        <li><a href="index.html#modules"  class="nav-link">Modules</a></li>
+        <li><a href="index.html#contact"  class="nav-link">Contact</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ── HERO ── -->
+  <div class="mod-hero">
+    <div class="inner">
+      <a href="index.html#modules" class="back-link">
+        <i class="fas fa-arrow-left"></i> Back to Modules
+      </a>
+      <p class="mod-page-tag">Module 02</p>
+      <h1 class="mod-page-title">UI/UX <span>Design</span></h1>
+      <p class="mod-page-desc">
+        Designing beautiful, user-friendly interfaces using Figma —
+        from wireframes and prototypes to fully interactive designs
+        that solve real user problems.
+      </p>
+      <div class="mod-meta">
+        <div class="mod-meta-item"><i class="fas fa-user"></i> Rajlaxmi Rede</div>
+        <div class="mod-meta-item"><i class="fas fa-university"></i> SSGMCE, Shegaon</div>
+        <div class="mod-meta-item"><i class="fas fa-calendar"></i> 2025</div>
+        <div class="mod-meta-item"><i class="fab fa-figma"></i> Figma</div>
+        <div class="mod-meta-item"><i class="fas fa-paint-brush"></i> 2 Projects</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── CONTENT ── -->
+  <div class="mod-content">
+    <div class="inner">
+
+      <!-- ══ MAIN COLUMN ══ -->
+      <div class="mod-main">
+
+        <!-- About -->
+        <div class="content-block fade-up">
+          <h2><i class="fas fa-info-circle"></i> About This Module</h2>
+          <p>
+            UI/UX Design is the process of creating digital products that are both
+            visually appealing and easy to use. In this module I am learning how to
+            design interfaces using <strong>Figma</strong> — from initial wireframes
+            to fully interactive prototypes.
+          </p>
+          <p>
+            Good UI/UX design is about understanding the user's needs and creating
+            experiences that feel natural, intuitive, and enjoyable. I have completed
+            <strong>2 design projects</strong> in this module so far.
+          </p>
+        </div>
+
+        <!-- What I learned -->
+        <div class="content-block fade-up d1">
+          <h2><i class="fas fa-lightbulb"></i> What I'm Learning</h2>
+          <div class="topic-item"><i class="fas fa-check-circle"></i> UI vs UX — understanding the difference</div>
+          <div class="topic-item"><i class="fas fa-check-circle"></i> Figma basics — frames, components, auto layout</div>
+          <div class="topic-item"><i class="fas fa-check-circle"></i> Wireframing — low and high fidelity</div>
+          <div class="topic-item"><i class="fas fa-check-circle"></i> Prototyping — interactive screen flows</div>
+          <div class="topic-item"><i class="fas fa-check-circle"></i> Color theory and typography in design</div>
+          <div class="topic-item"><i class="fas fa-check-circle"></i> User-centered design principles</div>
+          <div class="topic-item"><i class="fas fa-check-circle"></i> Mobile-first design approach</div>
+        </div>
+
+        <!-- ── PROJECT 1 — SMOOTHIE APP ── -->
+        <div class="project-showcase fade-up">
+          <div class="project-showcase-header">
+            <div class="project-badge">🥤</div>
+            <div>
+              <div class="project-name">Smoothie Ordering App</div>
+              <div class="project-type">Mobile App UI/UX Design · Figma Prototype</div>
+            </div>
+          </div>
+          <div class="project-body">
+            <div class="project-tags">
+              <span class="project-tag">UI Design</span>
+              <span class="project-tag">UX Design</span>
+              <span class="project-tag">Figma</span>
+              <span class="project-tag">Mobile App</span>
+              <span class="project-tag">Prototyping</span>
+            </div>
+            <p>
+              Designed a complete <strong>Smoothie ordering mobile app</strong> using Figma.
+              The design focuses on a clean, fresh, and vibrant user interface that makes
+              ordering smoothies simple and enjoyable.
+            </p>
+            <p>
+              The prototype includes <strong>interactive screens</strong> with smooth navigation
+              flow — from the home screen, to product selection, customization, and checkout.
+              Special attention was given to color choices, typography, and visual hierarchy
+              to make the app feel premium and appetizing.
+            </p>
+
+            <div class="mockup-area">
+              <div class="mockup-screen">
+                <i class="fas fa-home"></i>
+                <span>Home Screen</span>
+              </div>
+              <div class="mockup-screen">
+                <i class="fas fa-list"></i>
+                <span>Menu Screen</span>
+              </div>
+              <div class="mockup-screen">
+                <i class="fas fa-shopping-cart"></i>
+                <span>Order Screen</span>
+              </div>
+              <div class="mockup-screen">
+                <i class="fas fa-check-circle"></i>
+                <span>Checkout</span>
+              </div>
+            </div>
+
+            <div class="figma-previews" style="margin-top:20px;">
+              <a href="https://www.figma.com/proto/hM9DYIUPNpZbMHEtj3HZSu/SMOOTHIE?page-id=0%3A1&node-id=1-2&viewport=-27%2C272%2C0.26&t=ZIul0UamfwOJf7u2-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=1%3A2"
+                 target="_blank" class="figma-btn">
+                <i class="fab fa-figma"></i> View Prototype
+              </a>
+              <a href="https://www.figma.com/proto/R5Jrcd3M5O8kg1SJXBQDNY/Untitled?page-id=3%3A2&node-id=3-122&p=f&viewport=81%2C259%2C0.11&t=gJ6X6lmeKwfV7VP4-1&scaling=contain&content-scaling=fixed&starting-point-node-id=3%3A122"
+                 target="_blank" class="figma-btn outline">
+                <i class="fab fa-figma"></i> View Prototype 2
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── PROJECT 2 — RED BULL ── -->
+        <div class="project-showcase fade-up d1">
+          <div class="project-showcase-header">
+            <div class="project-badge">🐂</div>
+            <div>
+              <div class="project-name">Red Bull — Brand UI Design</div>
+              <div class="project-type">Brand Design · UI/UX · Figma Prototype</div>
+            </div>
+          </div>
+          <div class="project-body">
+            <div class="project-tags">
+              <span class="project-tag">Brand Design</span>
+              <span class="project-tag">UI Design</span>
+              <span class="project-tag">Figma</span>
+              <span class="project-tag">Prototyping</span>
+              <span class="project-tag">Red Bull</span>
+            </div>
+            <p>
+              Designed a <strong>Red Bull brand UI project</strong> using Figma,
+              capturing the bold, energetic, and dynamic identity of the Red Bull brand.
+              The design stays true to Red Bull's iconic color palette — deep blue,
+              silver, and red — while creating a modern and engaging user interface.
+            </p>
+            <p>
+              This project helped me understand <strong>brand-consistent design</strong>,
+              how to work with established visual identities, and how to create
+              interfaces that reflect a brand's personality and energy.
+            </p>
+
+            <div class="mockup-area" style="background:linear-gradient(135deg,#003580,#001f4d);">
+              <div class="mockup-screen">
+                <i class="fas fa-bolt"></i>
+                <span>Home</span>
+              </div>
+              <div class="mockup-screen">
+                <i class="fas fa-tint"></i>
+                <span>Products</span>
+              </div>
+              <div class="mockup-screen">
+                <i class="fas fa-trophy"></i>
+                <span>Events</span>
+              </div>
+              <div class="mockup-screen">
+                <i class="fas fa-shopping-bag"></i>
+                <span>Shop</span>
+              </div>
+            </div>
+
+            <div class="figma-previews" style="margin-top:20px;">
+              <a href="https://www.figma.com/proto/R5Jrcd3M5O8kg1SJXBQDNY/Untitled?page-id=3%3A2&node-id=3-122&p=f&viewport=81%2C259%2C0.11&t=gJ6X6lmeKwfV7VP4-1&scaling=contain&content-scaling=fixed&starting-point-node-id=3%3A122"
+                 target="_blank" class="figma-btn">
+                <i class="fab fa-figma"></i> View Red Bull Design
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Reflection -->
+        <div class="content-block fade-up">
+          <h2><i class="fas fa-pen"></i> My Reflection</h2>
+          <p>
+            UI/UX Design has been one of the most creative and exciting modules
+            so far. Learning Figma opened up a whole new world of digital design
+            for me — I now see every app and website differently, noticing design
+            choices that I never paid attention to before.
+          </p>
+          <p>
+            Working on the Smoothie app and Red Bull brand design taught me how
+            important <strong>color, typography, spacing, and visual hierarchy</strong>
+            are in creating a great user experience. I am excited to keep
+            improving my design skills!
+          </p>
+        </div>
+
+      </div><!-- end main -->
+
+      <!-- ══ SIDEBAR ══ -->
+      <div class="mod-sidebar">
+
+        <div class="sidebar-card fade-up d2">
+          <h3>My Progress</h3>
+          <div class="progress-item">
+            <div class="progress-label"><span>Figma Basics</span><span>70%</span></div>
+            <div class="progress-bar"><div class="progress-fill" style="width:70%"></div></div>
+          </div>
+          <div class="progress-item">
+            <div class="progress-label"><span>Wireframing</span><span>65%</span></div>
+            <div class="progress-bar"><div class="progress-fill" style="width:65%"></div></div>
+          </div>
+          <div class="progress-item">
+            <div class="progress-label"><span>Prototyping</span><span>60%</span></div>
+            <div class="progress-bar"><div class="progress-fill" style="width:60%"></div></div>
+          </div>
+          <div class="progress-item">
+            <div class="progress-label"><span>Brand Design</span><span>55%</span></div>
+            <div class="progress-bar"><div class="progress-fill" style="width:55%"></div></div>
+          </div>
+        </div>
+
+        <div class="sidebar-card fade-up d2">
+          <h3>Projects Done</h3>
+          <div class="detail-item"><i class="fas fa-check-circle" style="color:#10b981;"></i> Smoothie App UI</div>
+          <div class="detail-item"><i class="fas fa-check-circle" style="color:#10b981;"></i> Red Bull Brand UI</div>
+        </div>
+
+        <div class="sidebar-card fade-up d3">
+          <h3>Module Details</h3>
+          <div class="detail-item"><i class="fas fa-tag"></i> Module 02 of 10</div>
+          <div class="detail-item"><i class="fas fa-layer-group"></i> Digital FABLAB</div>
+          <div class="detail-item"><i class="fas fa-university"></i> SSGMCE, Shegaon</div>
+          <div class="detail-item"><i class="fas fa-user"></i> Rajlaxmi Rede</div>
+          <div class="detail-item"><i class="fas fa-calendar"></i> 2025</div>
+        </div>
+
+        <div class="sidebar-card fade-up">
+          <h3>Tools Used</h3>
+          <a href="https://www.figma.com" target="_blank" class="res-link">
+            <i class="fab fa-figma"></i> Figma
+          </a>
+          <a href="https://www.figma.com/community" target="_blank" class="res-link">
+            <i class="fas fa-users"></i> Figma Community
+          </a>
+          <a href="https://coolors.co" target="_blank" class="res-link">
+            <i class="fas fa-palette"></i> Coolors (Color Tool)
+          </a>
+          <a href="https://fonts.google.com" target="_blank" class="res-link">
+            <i class="fas fa-font"></i> Google Fonts
+          </a>
+        </div>
+
+        <div class="sidebar-card fade-up">
+          <h3>Other Modules</h3>
+          <a href="web-development.html"  class="res-link"><i class="fas fa-code"></i> Web Development</a>
+          <a href="3d-printing.html"      class="res-link"><i class="fas fa-print"></i> 3D Printing</a>
+          <a href="lasercutting.html"     class="res-link"><i class="fas fa-cut"></i> Laser Cutting</a>
+          <a href="embedded-systems.html" class="res-link"><i class="fas fa-microchip"></i> Embedded Systems</a>
+          <a href="pcb-design.html"       class="res-link"><i class="fas fa-bolt"></i> PCB Design</a>
+          <a href="iot.html"              class="res-link"><i class="fas fa-wifi"></i> IoT</a>
+          <a href="java-programming.html" class="res-link"><i class="fab fa-java"></i> Java</a>
+          <a href="networking.html"       class="res-link"><i class="fas fa-network-wired"></i> Networking</a>
+          <a href="ai-ml.html"            class="res-link"><i class="fas fa-robot"></i> AI / ML</a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ── FOOTER ── -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="footer-logo">
+            <i class="fas fa-microchip"></i> Rajlaxmi <span>FABLAB</span>
+          </a>
+          <p class="footer-desc">Portfolio showcasing my learning journey through the Digital FABLAB program at SSGMCE Shegaon.</p>
+        </div>
+        <div class="footer-col">
+          <h4 class="fc-title">Quick Links</h4>
+          <ul class="flinks">
+            <li><a href="index.html#home">Home</a></li>
+            <li><a href="index.html#about">About</a></li>
+            <li><a href="index.html#modules">Modules</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4 class="fc-title">All Modules</h4>
+          <ul class="flinks">
+            <li><a href="web-development.html">Web Development</a></li>
+            <li><a href="ui-ux-design.html">UI/UX Design</a></li>
+            <li><a href="3d-printing.html">3D Printing</a></li>
+            <li><a href="embedded-systems.html">Embedded Systems</a></li>
+            <li><a href="iot.html">IoT</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4 class="fc-title">Resources</h4>
+          <ul class="flinks">
+            <li><a href="agreement.html">Student Agreement</a></li>
+            <li><a href="raj_resume.pdf" target="_blank">My Resume</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 Digital FABLAB Portfolio · Crafted with ❤️ by <span>Rajlaxmi Rede</span></p>
+      </div>
+    </div>
+  </footer>
+
+  <button class="btt" id="backToTop"><i class="fas fa-chevron-up"></i></button>
+
+  <script>
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 20);
+      document.getElementById('backToTop')
+              .classList.toggle('visible', window.scrollY > 400);
+    }, { passive:true });
+    document.getElementById('backToTop').addEventListener('click', () =>
+      window.scrollTo({ top:0, behavior:'smooth' })
+    );
+    const ham = document.getElementById('hamburger');
+    const mob = document.getElementById('navMenu');
+    ham.addEventListener('click', () => {
+      ham.classList.toggle('open');
+      mob.classList.toggle('open');
+    });
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+      });
+    }, { threshold:0.07 });
+    document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+  </script>
+
+</body>
+</html>
