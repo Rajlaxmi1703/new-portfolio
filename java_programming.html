@@ -1,0 +1,1579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Java Programming — Rajlaxmi Rede</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+
+    /* ── PAGE HERO ── */
+    .mod-hero {
+      padding: 130px 0 60px;
+      background: linear-gradient(135deg,#1a1245 0%,#2d1b6b 40%,#1a1245 100%);
+      position: relative; overflow: hidden;
+    }
+    .mod-hero::before {
+      content:''; position:absolute; inset:0;
+      background-image: radial-gradient(rgba(255,255,255,0.04) 1px, transparent 1px);
+      background-size: 28px 28px;
+    }
+    .mod-hero .inner {
+      position:relative; z-index:1;
+      max-width:1200px; margin:0 auto; padding:0 24px;
+    }
+    .back-link {
+      display:inline-flex; align-items:center; gap:8px;
+      color:rgba(255,255,255,0.55); font-size:0.84rem; font-weight:500;
+      margin-bottom:28px; transition:color 0.2s; text-decoration:none;
+    }
+    .back-link:hover { color:#fff; }
+    .mod-page-tag {
+      display:inline-block; padding:5px 16px; border-radius:100px;
+      background:rgba(108,99,255,0.25); color:#a78bfa;
+      font-size:0.72rem; font-weight:700; letter-spacing:0.14em;
+      text-transform:uppercase; margin-bottom:16px;
+    }
+    .mod-page-title {
+      font-family:'Playfair Display',serif;
+      font-size:clamp(2rem,5vw,3.5rem);
+      font-weight:800; color:#fff; line-height:1.1; margin-bottom:16px;
+    }
+    .mod-page-title span { color:#6c63ff; }
+    .mod-page-desc {
+      font-size:1rem; color:rgba(255,255,255,0.6);
+      line-height:1.8; max-width:600px; margin-bottom:32px;
+    }
+    .mod-meta { display:flex; flex-wrap:wrap; gap:12px; }
+    .mod-meta-item {
+      display:flex; align-items:center; gap:8px;
+      background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.12);
+      padding:8px 16px; border-radius:8px;
+      font-size:0.78rem; font-weight:600; color:rgba(255,255,255,0.7);
+    }
+    .mod-meta-item i { color:#6c63ff; }
+
+    /* ── CONTENT LAYOUT ── */
+    .mod-content { padding:60px 0; background:var(--bg); }
+    .mod-content .inner {
+      max-width:1200px; margin:0 auto; padding:0 24px;
+      display:grid; grid-template-columns:1fr 300px; gap:40px; align-items:start;
+    }
+
+    /* ── CONTENT BLOCKS ── */
+    .content-block {
+      background:var(--white); border:1px solid var(--border);
+      border-radius:var(--r); padding:32px; margin-bottom:24px;
+    }
+    .content-block h2 {
+      font-family:'Playfair Display',serif;
+      font-size:1.35rem; font-weight:800; color:var(--dark);
+      margin-bottom:16px; display:flex; align-items:center; gap:10px;
+    }
+    .content-block h2 i { color:#6c63ff; }
+    .content-block p {
+      font-size:0.93rem; color:var(--muted); line-height:1.85; margin-bottom:12px;
+    }
+    .content-block p:last-child { margin-bottom:0; }
+
+    /* ── FEATURED PROJECT ── */
+    .feat-project {
+      background:linear-gradient(135deg,#f0eeff,#e8e4ff);
+      border:1px solid rgba(108,99,255,0.25);
+      border-radius:var(--r); padding:28px; margin-bottom:24px;
+      display:flex; align-items:center; gap:20px; flex-wrap:wrap;
+    }
+    .feat-project-icon {
+      width:60px; height:60px; border-radius:14px;
+      background:#6c63ff; color:#fff;
+      display:flex; align-items:center; justify-content:center;
+      font-size:1.6rem; flex-shrink:0;
+    }
+    .feat-project-body { flex:1; min-width:220px; }
+    .feat-project-body h3 { font-size:1.05rem; font-weight:800; color:var(--dark); margin-bottom:6px; }
+    .feat-project-body p { font-size:0.85rem; color:var(--muted); line-height:1.7; margin-bottom:12px; }
+    .feat-project-links { display:flex; gap:10px; flex-wrap:wrap; }
+    .feat-project-links a {
+      display:inline-flex; align-items:center; gap:6px;
+      padding:8px 16px; border-radius:8px; font-size:0.8rem; font-weight:700;
+      text-decoration:none; transition:0.2s;
+    }
+    .feat-btn-primary { background:#6c63ff; color:#fff; }
+    .feat-btn-primary:hover { background:#554fd8; }
+    .feat-btn-secondary { background:#fff; color:#6c63ff; border:1px solid rgba(108,99,255,0.3); }
+    .feat-btn-secondary:hover { background:var(--primary-l); }
+
+    /* ── DAY CARDS ── */
+    .day-card {
+      background:var(--white); border:1px solid var(--border);
+      border-radius:var(--r); margin-bottom:20px; overflow:hidden;
+    }
+    .day-header {
+      display:flex; align-items:center; gap:14px;
+      padding:18px 24px;
+      background:linear-gradient(135deg,#f0eeff,#e8e4ff);
+      border-bottom:1px solid var(--border);
+      cursor:pointer; transition:background 0.2s;
+      user-select:none;
+    }
+    .day-header:hover { background:linear-gradient(135deg,#e4dfff,#d8d0ff); }
+    .day-badge {
+      width:44px; height:44px; border-radius:10px;
+      background:#6c63ff; color:#fff;
+      display:flex; align-items:center; justify-content:center;
+      font-size:0.7rem; font-weight:800; flex-shrink:0;
+      text-align:center; line-height:1.2;
+    }
+    .day-title-wrap { flex:1; }
+    .day-title { font-size:1rem; font-weight:800; color:var(--dark); margin-bottom:2px; }
+    .day-subtitle { font-size:0.75rem; color:var(--muted); font-weight:500; }
+    .day-arrow { color:var(--muted); font-size:0.85rem; transition:transform 0.3s; flex-shrink:0; }
+    .day-header.open .day-arrow { transform:rotate(180deg); }
+
+    .day-body {
+      max-height:0; overflow:hidden;
+      transition:max-height 0.45s ease, padding 0.3s;
+      padding:0 28px;
+    }
+    .day-body.open { max-height:6000px; padding:28px; }
+
+    /* ── CODE BOX ── */
+    .code-box {
+      background:#1e1d3f; border-radius:10px;
+      padding:18px 22px; margin:14px 0;
+      overflow-x:auto; border:1px solid rgba(108,99,255,0.25);
+    }
+    .code-label {
+      font-family:'Courier New',monospace;
+      font-size:0.65rem; color:#a78bfa;
+      font-weight:700; letter-spacing:0.1em;
+      text-transform:uppercase; margin-bottom:8px;
+    }
+    .code-box pre {
+      font-family:'Courier New',monospace;
+      font-size:0.78rem; color:#c9d1d9;
+      white-space:pre-wrap; word-break:break-word; margin:0;
+    }
+
+    /* ── RESULT PREVIEW ── */
+    .result-box {
+      background:#f8f7ff; border:2px solid var(--border);
+      border-radius:10px; padding:18px; margin:14px 0;
+    }
+    .result-label {
+      font-size:0.68rem; font-weight:800; letter-spacing:0.1em;
+      text-transform:uppercase; color:#6c63ff; margin-bottom:12px;
+      display:flex; align-items:center; gap:6px;
+    }
+    .console-box {
+      background:#0e0e1a; color:#8fffb0;
+      font-family:'Courier New',monospace; font-size:0.8rem;
+      padding:14px 18px; border-radius:8px; white-space:pre-wrap;
+    }
+
+    /* topic list */
+    .topic-item {
+      display:flex; align-items:center; gap:10px;
+      font-size:0.87rem; color:var(--muted); margin-bottom:8px;
+    }
+    .topic-item i { color:#6c63ff; flex-shrink:0; }
+
+    /* ── SIDEBAR ── */
+    .sidebar-card {
+      background:var(--white); border:1px solid var(--border);
+      border-radius:var(--r); padding:22px; margin-bottom:20px;
+    }
+    .sidebar-card h3 {
+      font-size:0.82rem; font-weight:800; color:var(--dark);
+      text-transform:uppercase; letter-spacing:0.08em; margin-bottom:16px;
+    }
+    .progress-item { margin-bottom:14px; }
+    .progress-item:last-child { margin-bottom:0; }
+    .progress-label {
+      display:flex; justify-content:space-between;
+      font-size:0.76rem; font-weight:600; color:var(--text); margin-bottom:5px;
+    }
+    .progress-bar { height:6px; background:var(--border); border-radius:100px; overflow:hidden; }
+    .progress-fill {
+      height:100%; border-radius:100px;
+      background:linear-gradient(90deg,#6c63ff,#a78bfa);
+    }
+    .res-link {
+      display:flex; align-items:center; gap:10px;
+      padding:10px 12px; border-radius:var(--r-sm);
+      border:1px solid var(--border); font-size:0.8rem; font-weight:600;
+      color:#6c63ff; text-decoration:none; transition:var(--tr); margin-bottom:8px;
+    }
+    .res-link:last-child { margin-bottom:0; }
+    .res-link:hover { background:var(--primary-l); border-color:rgba(108,99,255,0.3); }
+    .detail-item {
+      display:flex; align-items:center; gap:10px;
+      font-size:0.82rem; color:var(--muted); margin-bottom:10px;
+    }
+    .detail-item:last-child { margin-bottom:0; }
+    .detail-item i { color:#6c63ff; width:14px; }
+
+    /* ── RESPONSIVE ── */
+    @media(max-width:900px) {
+      .mod-content .inner { grid-template-columns:1fr; }
+      .mod-sidebar { order:-1; }
+      .day-body.open { padding:18px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── NAVBAR ── -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+  <img src="./Fablab logo black.png" alt="FabLab Logo" class="logo-img"/>
+  Rajlaxmi 
+</a>
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="index.html#home"     class="nav-link">Home</a></li>
+        <li><a href="index.html#about"    class="nav-link">About</a></li>
+        <li><a href="index.html#projects" class="nav-link">Projects</a></li>
+        <li><a href="index.html#modules"  class="nav-link">Modules</a></li>
+        <li><a href="index.html#contact"  class="nav-link">Contact</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ── HERO ── -->
+  <div class="mod-hero">
+    <div class="inner">
+      <a href="index.html#modules" class="back-link">
+        <i class="fas fa-arrow-left"></i> Back to Modules
+      </a>
+      <p class="mod-page-tag">Module 08</p>
+      <h1 class="mod-page-title">Java <span>Programming</span></h1>
+      <p class="mod-page-desc">
+        My day-by-day learning journey through core Java — from variables and
+        control flow to object-oriented programming, file handling, and a
+        complete console-based project.
+      </p>
+      <div class="mod-meta">
+        <div class="mod-meta-item"><i class="fas fa-user"></i> Rajlaxmi Rede</div>
+        <div class="mod-meta-item"><i class="fas fa-university"></i> SSGMCE, Shegaon</div>
+        <div class="mod-meta-item"><i class="fas fa-calendar"></i> 2025</div>
+        <div class="mod-meta-item"><i class="fab fa-java"></i> Core Java</div>
+        <div class="mod-meta-item"><i class="fas fa-sun"></i> 8 Days Covered</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── CONTENT ── -->
+  <div class="mod-content">
+    <div class="inner">
+
+      <!-- MAIN -->
+      <div class="mod-main">
+
+        <div class="content-block fade-up">
+          <h2><i class="fas fa-info-circle"></i> About This Module</h2>
+          <p>
+            Java Programming is where I'm learning object-oriented programming
+            fundamentals — classes, objects, inheritance, and how to build
+            real console applications. Each day I practise by writing and
+            testing programs in VS Code.
+          </p>
+          <p>
+            Below you can see my actual work from each day — including the
+            code I wrote, sample output, and what I learned — plus my
+            featured project below.
+          </p>
+        </div>
+
+        <!-- FEATURED PROJECT -->
+        <div class="feat-project fade-up">
+          <div class="feat-project-icon"><i class="fas fa-address-book"></i></div>
+          <div class="feat-project-body">
+            <h3>Featured Project — Contact Management System</h3>
+            <p>
+              A console-based contact management system built in core Java.
+              Supports adding, viewing, searching, updating, and deleting
+              contacts with input validation, and saves data to a file so
+              nothing is lost on exit.
+            </p>
+            <div class="feat-project-links">
+              <a href="ContactManagementSystem.java" target="_blank" class="feat-btn-primary">
+                <i class="fas fa-eye"></i> View Code
+              </a>
+              <a href="ContactManagementSystem.java" download class="feat-btn-secondary">
+                <i class="fas fa-download"></i> Download .java File
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- DAY 1 -->
+        <div class="day-card fade-up d1">
+          <div class="day-header" onclick="toggleDay(this)">
+            <div class="day-badge">DAY<br>1</div>
+            <div class="day-title-wrap">
+              <div class="day-title">Day 1 — Java Basics</div>
+              <div class="day-subtitle">Class Structure · main Method · System.out.println</div>
+            </div>
+            <i class="fas fa-chevron-down day-arrow"></i>
+          </div>
+          <div class="day-body">
+            <div style="margin-bottom:16px;">
+              <div class="topic-item"><i class="fas fa-check-circle"></i> Basic structure of a Java class</div>
+              <div class="topic-item"><i class="fas fa-check-circle"></i> The main method — entry point of a Java program</div>
+              <div class="topic-item"><i class="fas fa-check-circle"></i> Printing output using System.out.println</div>
+              <div class="topic-item"><i class="fas fa-check-circle"></i> Compiling and running a Java file (javac and java)</div>
+            </div>
+
+            <p style="font-weight:700;color:var(--dark);margin-bottom:10px;">👋 Mini Project 1 — Demo.java</p>
+            <div class="code-box">
+              <div class="code-label">My Java Code</div>
+              <pre>class Demo{
+    public static void main(String [] args){
+        System.out.println("Hello World!!");
+        System.out.println("fablab ppl");  
+        System.out.println("Rajlaxmi"); 
+        System.out.println("SSGMCE"); 
+        System.out.println("Information Technology");  
+        System.out.println("Amravati");
+        System.out.println("fablab ppl");          
+    }
+}</pre>
+            </div>
+            <div class="result-box">
+              <div class="result-label"><i class="fas fa-terminal"></i> Sample Output</div>
+              <div class="console-box">Hello World!!
+fablab ppl
+Rajlaxmi
+SSGMCE
+Information Technology
+Amravati
+fablab ppl</div>
+            </div>
+
+            <p style="font-weight:700;color:var(--dark);margin:18px 0 10px;">⭐ Mini Project 2 — home1.java (Star Pattern)</p>
+            <div class="code-box">
+              <div class="code-label">My Java Code</div>
+              <pre>class home1{
+    public static void main (String args[]){
+        System.out.println("*");
+        System.out.println("**");
+        System.out.println("***");
+        System.out.println("****");
+        System.out.println("*****");
+        System.out.println("******");
+    }
+}</pre>
+            </div>
+            <div class="result-box">
+              <div class="result-label"><i class="fas fa-terminal"></i> Sample Output</div>
+              <div class="console-box">*
+**
+***
+****
+*****
+******</div>
+            </div>
+
+            <p style="font-size:0.86rem;color:var(--muted);font-style:italic;margin-top:8px;">
+              💡 <b>What I learned:</b> How a Java program is structured with a class and
+              a main method, how System.out.println prints output line by line, and how
+              to compile a .java file with javac and run it with java.
+            </p>
+          </div>
+        </div>
+
+        <!-- DAY 2 -->
+        <div class="day-card fade-up">
+          <div class="day-header" onclick="toggleDay(this)">
+            <div class="day-badge">DAY<br>2</div>
+            <div class="day-title-wrap">
+              <div class="day-title">Day 2 — Taking Input & Data Types</div>
+              <div class="day-subtitle">Scanner · char, String, int, float · Real-World Calculations</div>
+            </div>
+            <i class="fas fa-chevron-down day-arrow"></i>
+          </div>
+          <div class="day-body">
+            <div style="margin-bottom:16px;">
+              <div class="topic-item"><i class="fas fa-check-circle"></i> Reading different data types with Scanner — next(), nextInt(), nextFloat()</div>
+              <div class="topic-item"><i class="fas fa-check-circle"></i> charAt() to extract a single character from input</div>
+              <div class="topic-item"><i class="fas fa-check-circle"></i> Using variables in real formulas — percentage, simple interest</div>
+              <div class="topic-item"><i class="fas fa-check-circle"></i> Printing multiple pieces of personal data cleanly</div>
+            </div>
+
+            <p style="font-weight:700;color:var(--dark);margin-bottom:10px;">📋 Mini Project 1 — Reading Basic Details (Day2.java)</p>
+            <div class="code-box">
+              <div class="code-label">My Java Code</div>
+              <pre>import java.util.*;
+class Day2{
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        
+        System.out.println( "enter your name");
+        char N = sc.next().charAt(1);
+        System.out.println("Name : " +N);
+
+        System.out.println( "enter your name");
+        String x = sc.next();
+        System.out.println("Name : " +x);
+
+        System.out.println( "enter your age");
+        int y = sc.nextInt();
+        System.out.println(+y);
+
+        System.out.println( "enter your wieght");
+        float z = sc.nextFloat();
+        System.out.println(+z);
+
+    }
+ }</pre>
+            </div>
+
+            <p style="font-weight:700;color:var(--dark);margin:18px 0 10px;">🧮 Mini Project 2 — Percentage, Simple Interest, Square & Cube (D2.java)</p>
+            <div class="code-box">
+              <div class="code-label">My Java Code</div>
+              <pre>class D1{
+    public static void main(String[] args){
+    Scanner sc = new Scanner(System.in);
+// print percentage of a student
+    System.out.println("enter your total obtain marks: ");
+    float x = sc.nextFloat();
+    float per = (x/600) * 100 ;
+    System.out.println("Your percentage: " +per);
+
+//calculte simple intrest
+    System.out.println("enter values of P");
+    float p = sc.nextFloat();
+    System.out.println("enter values of N");
+    float n = sc.nextFloat();
+    System.out.println("enter values of R");
+    float r = sc.nextFloat();
+
+    float si = (p * n * r) / 100 ;
+    System.out.println("Simple intrest: " +si);
+
+// find square and cube of a number
+    System.out.println("enter a number: ");
+    int num = sc.nextInt();
+    int sq = num*num;
+    int cube = num*num*num ;
+    System.out.println("Square of a number: " +sq);
+    System.out.println("Cube of a number: " +cube);
+    }
+}</pre>
+            </div>
+
+            <p style="font-weight:700;color:var(--dark);margin:18px 0 10px;">📇 Mini Project 3 — Biodata</p>
+            <div class="code-box">
+              <div class="code-label">My Java Code</div>
+              <pre>class biodata{
+    public static void main(String[] args){
+        
+        System.out.println("Name        : Rajlaxmi Rede");
+        System.out.println("Age         : 18");
+        System.out.println("Gender      : Female");
+        System.out.println("Course      : B.E. Information Technology");
+        System.out.println("College     : SSGMCE");
+        System.out.println("City        : Amravati");
+        System.out.println("State       : Maharashtra");
+        System.out.println("Hobbies     : Traveling, Listening to Music, Learning New Skills");
+        System.out.println("Goal        : Become a Web Developer");
+        
+    }
+}</pre>
+            </div>
+
+            <p style="font-size:0.86rem;color:var(--muted);font-style:italic;margin-top:8px;">
+              💡 <b>What I learned:</b> How to take different types of input using Scanner,
+              the difference between char, String, int and float, and how to use variables
+              together in real formulas like percentage and simple interest.
+            </p>
+          </div>
+        </div>
+
+        <!-- DAY 3 -->
+        <div class="day-card fade-up d1">
+          <div class="day-header" onclick="toggleDay(this)">
+            <div class="day-badge">DAY<br>3</div>
+            <div class="day-title-wrap">
+              <div class="day-title">Day 3 — Operators</div>
+              <div class="day-subtitle">Arithmetic · Assignment · Bitwise · Relational · Unary</div>
+            </div>
+            <i class="fas fa-chevron-down day-arrow"></i>
+          </div>
+          <div class="day-body">
+            <div style="margin-bottom:16px;">
+              <div class="topic-item"><i class="fas fa-check-circle"></i> Arithmetic operators — +, -, *, /</div>
+              <div class="topic-item"><i class="fas fa-check-circle"></i> Assignment operators — +=, -=</div>
+              <div class="topic-item"><i class="fas fa-check-circle"></i> Bitwise operators — & (AND), | (OR)</div>
+              <div class="topic-item"><i class="fas fa-check-circle"></i> Relational operators — ==, !=, &lt;=, &gt;=</div>
+              <div class="topic-item"><i class="fas fa-check-circle"></i> Unary operators — pre/post increment and decrement</div>
+            </div>
+
+            <p style="font-weight:700;color:var(--dark);margin-bottom:10px;">➕ Arithmetic Operators</p>
+            <div class="code-box">
+              <div class="code-label">My Java Code</div>
+              <pre>class ArithmaticOperator{
+    public static void main(String[] args){
+        int a = 2, b = 3 ;
+        System.out.println("Addition = "+(a+b));
+        System.out.println("Subtraction = "+(a-b));
+        System.out.println("Multiplication = "+(a*b));
+        System.out.println("Division = "+(a/b));
+    }
+}</pre>
+            </div>
+            <div class="result-box">
+              <div class="result-label"><i class="fas fa-terminal"></i> Sample Output</div>
+              <div class="console-box">Addition = 5
+Subtraction = -1
+Multiplication = 6
+Division = 0</div>
+            </div>
+
+            <p style="font-weight:700;color:var(--dark);margin:18px 0 10px;">🔁 Assignment Operators</p>
+            <div class="code-box">
+              <div class="code-label">My Java Code</div>
+              <pre>class AssignmentOperator{
+    public static void main(String[] args){
+     int a=10;
+     System.out.println(a);
+     a+=5;
+     System.out.println("After = "+a);
+     a -=3;
+     System.out.println("After ="+a);
+    }
+}</pre>
+            </div>
+            <div class="result-box">
+              <div class="result-label"><i class="fas fa-terminal"></i> Sample Output</div>
+              <div class="console-box">10
+After = 15
+After =12</div>
+            </div>
+
+            <p style="font-weight:700;color:var(--dark);margin:18px 0 10px;">🔢 Bitwise Operators</p>
+            <div class="code-box">
+              <div class="code-label">My Java Code</div>
+              <pre>class BitwiseOperator{
+    public static void main(String[] args){
+    int a = 5, b = 3, c = 9, d = 4;
+    System.out.println(a&b);
+    System.out.println(a|b);
+    System.out.println(c&d);
+    System.out.println(c|d);
+    }
+}</pre>
+            </div>
+
+            <p style="font-weight:700;color:var(--dark);margin:18px 0 10px;">⚖️ Relational Operators</p>
+            <div class="code-box">
+              <div class="code-label">My Java Code</div>
+              <pre>class RelationalOperator{
+    public static void main(String[] args){
+        int a = 10, b = 5;
+        System.out.println(a == b);
+        System.out.println(a != b);
+        System.out.println(a <= b);
+        System.out.println(a >= b);
+    }
+}</pre>
+            </div>
+            <div class="result-box">
+              <div class="result-label"><i class="fas fa-terminal"></i> Sample Output</div>
+              <div class="console-box">false
+true
+false
+true</div>
+            </div>
+
+            <p style="font-weight:700;color:var(--dark);margin:18px 0 10px;">🔼 Unary Operators</p>
+            <div class="code-box">
+              <div class="code-label">My Java Code</div>
+              <pre>class UnaryOperator{
+    public static void main(String[] args){
+     int a = 5 , x, y;
+     y = a++ ;
+     System.out.println("After ++ : "+y);
+     y = a-- ;
+     System.out.println("After -- : "+y);
+     x = ++a ;
+     System.out.println("After ++a : "+x);
+     x = --a ;
+     System.out.println("After --a : "+x);
+    }
+}</pre>
+            </div>
+            <div class="result-box">
+              <div class="result-label"><i class="fas fa-terminal"></i> Sample Output</div>
+              <div class="console-box">After ++ : 5
+After -- : 6
+After ++a : 6
+After --a : 5</div>
+            </div>
+            <p style="font-size:0.82rem;color:var(--muted);margin:8px 0 0;">Post-increment (a++) uses the value before adding 1, while pre-increment (++a) adds 1 first, then uses the new value.</p>
+
+            <p style="font-size:0.86rem;color:var(--muted);font-style:italic;margin-top:8px;">
+              💡 <b>What I learned:</b> The five main operator categories in Java —
+              arithmetic for calculations, assignment as shortcuts, bitwise for binary
+              logic, relational for comparisons, and unary for quick increment/decrement,
+              including the difference between pre and post versions.
+            </p>
+          </div>
+        </div>
+
+        <!-- DAY 4 -->
+        <div class="day-card fade-up">
+          <div class="day-header" onclick="toggleDay(this)">
+            <div class="day-badge">DAY<br>4</div>
+            <div class="day-title-wrap">
+              <div class="day-title">Day 4 — Loops & Control Flow</div>
+              <div class="day-subtitle">if · switch · for · while · do-while · break/continue</div>
+            </div>
+            <i class="fas fa-chevron-down day-arrow"></i>
+          </div>
+          <div class="day-body">
+            <div style="margin-bottom:16px;">
+              <div class="topic-item"><i class="fas fa-check-circle"></i> if, if-else-if, and nested if conditions</div>
+              <div class="topic-item"><i class="fas fa-check-circle"></i> switch statement as an alternative to many if-else checks</div>
+              <div class="topic-item"><i class="fas fa-check-circle"></i> for, while, and do-while loops</div>
+              <div class="topic-item"><i class="fas fa-check-circle"></i> break and continue inside loops</div>
+              <div class="topic-item"><i class="fas fa-check-circle"></i> Nested loops for printing star patterns</div>
+            </div>
+
+            <p style="font-weight:700;color:var(--dark);margin-bottom:10px;">🗳️ if Statement — Voting Eligibility</p>
+            <div class="code-box">
+              <div class="code-label">My Java Code</div>
+              <pre>class If{
+    public static void main(String[]args){
+        int age = 2 ;
+        if(age >= 18){
+            System.out.println("Your are eligible for voting.");
+        }
+    }
+}</pre>
+            </div>
+            <p style="font-size:0.82rem;color:var(--muted);margin:8px 0 0;">Since age is 2, nothing prints — the condition is false.</p>
+
+            <p style="font-weight:700;color:var(--dark);margin:18px 0 10px;">🎓 if-else-if — Grading System</p>
+            <div class="code-box">
+              <div class="code-label">My Java Code</div>
+              <pre>class IfElseIf{
+    public static void main(String[] args){
+        int score = 80 ;
+        if(score >=90){
+            System.out.println("Grade A");
+        }
+        else if(score >= 70){
+             System.out.println("Grade B");
+        }
+        else{
+             System.out.println("Grade C");
+        }
+    }
+}</pre>
+            </div>
+            <div class="result-box">
+              <div class="result-label"><i class="fas fa-terminal"></i> Sample Output</div>
+              <div class="console-box">Grade B</div>
+            </div>
+
+            <p style="font-weight:700;color:var(--dark);margin:18px 0 10px;">🚗 Nested if — Driving Eligibility</p>
+            <div class="code-box">
+              <div class="code-label">My Java Code</div>
+              <pre>public class NestedIf {
+    public static void main(String[] args) {
+        int age = 20;
+        boolean hasLicense = true;
+
+        if (age >= 18) {
+            if (hasLicense) {
+                System.out.println("You can drive.");
+            }
+        }
+    }
+}</pre>
+            </div>
+            <div class="result-box">
+              <div class="result-label"><i class="fas fa-terminal"></i> Sample Output</div>
+              <div class="console-box">You can drive.</div>
+            </div>
+
+            <p style="font-weight:700;color:var(--dark);margin:18px 0 10px;">📅 switch Statement — Day of Week</p>
+            <div class="code-box">
+              <div class="code-label">My Java Code</div>
+              <pre>class Switch{
+    public static void main (String []args){
+        int day = 9 ;
+        switch (day) {
+            case 1: System.out.println("Monday"); break;
+            case 2: System.out.println("Tuesday"); break;
+            case 3: System.out.println("Wednesday"); break;
+            case 4: System.out.println("Thursday"); break;
+            case 5: System.out.println("Friday"); break;
+            case 6: System.out.println("Saturday"); break;
+            case 7: System.out.println("Sunday"); break;
+            default: System.out.println("Invalid Day");
+        }
+    }
+}</pre>
+            </div>
+            <div class="result-box">
+              <div class="result-label"><i class="fas fa-terminal"></i> Sample Output</div>
+              <div class="console-box">Invalid Day</div>
+            </div>
+            <p style="font-size:0.82rem;color:var(--muted);margin:8px 0 0;">day = 9 doesn't match any case (1-7), so it falls through to default.</p>
+
+            <p style="font-weight:700;color:var(--dark);margin:18px 0 10px;">🔁 for Loop — Star Pattern</p>
+            <div class="code-box">
+              <div class="code-label">My Java Code</div>
+              <pre>class For{
+    public static void main(String[]args){
+        for(int i = 1; i<=5; i++){
+            for (int j=1; j<=i; j++){
+                System.out.print("* ");
+            }
+            System.out.println();
+        }
+    }
+}</pre>
+            </div>
+            <div class="result-box">
+              <div class="result-label"><i class="fas fa-terminal"></i> Sample Output</div>
+              <div class="console-box">* 
+* * 
+* * * 
+* * * * 
+* * * * *</div>
+            </div>
+
+            <p style="font-weight:700;color:var(--dark);margin:18px 0 10px;">🔺 More Pattern Practice (Homework)</p>
+            <div class="code-box">
+              <div class="code-label">My Java Code — Reversed Pyramid</div>
+              <pre>for(int i = 1; i<=5; i++){
+    for (int j=i; j<=5; j++){
+        System.out.print("* ");
+    }
+    System.out.println();
+}
+// Output:
+// * * * * * 
+// * * * * 
+// * * * 
+// * * 
+// *</pre>
+            </div>
+            <div class="code-box">
+              <div class="code-label">My Java Code — Right-Aligned Pyramid</div>
+              <pre>for(int i = 1; i<=5; i++){
+    for (int j = 5; j > i; j--) {
+        System.out.print("  ");
+    }
+    for (int j=1; j<=i; j++){
+        System.out.print("* ");
+    }
+    System.out.println();
+}
+// Output:
+//         * 
+//       * * 
+//     * * * 
+//   * * * * 
+// * * * * *</pre>
+            </div>
+
+            <p style="font-weight:700;color:var(--dark);margin:18px 0 10px;">🔂 while Loop</p>
+            <div class="code-box">
+              <div class="code-label">My Java Code</div>
+              <pre>class While{
+    public static void main(String[] args) {
+    int i = 1;
+    while (i <= 5) {
+      System.out.println("Count: " + i);
+      i++;
+    }
+  }
+}</pre>
+            </div>
+            <div class="result-box">
+              <div class="result-label"><i class="fas fa-terminal"></i> Sample Output</div>
+              <div class="console-box">Count: 1
+Count: 2
+Count: 3
+Count: 4
+Count: 5</div>
+            </div>
+
+            <p style="font-weight:700;color:var(--dark);margin:18px 0 10px;">🔁 do-while Loop</p>
+            <div class="code-box">
+              <div class="code-label">My Java Code</div>
+              <pre>class DoWhile{
+    public static void main(String[] args) {
+    int i = 5;
+    do{
+       System.out.println("Count: " + i);
+      i++;  
+    }
+    while (i <= 1); 
+  }
+}</pre>
+            </div>
+            <div class="result-box">
+              <div class="result-label"><i class="fas fa-terminal"></i> Sample Output</div>
+              <div class="console-box">Count: 5</div>
+            </div>
+            <p style="font-size:0.82rem;color:var(--muted);margin:8px 0 0;">Even though i=5 fails the condition, do-while always runs the body once before checking — unlike a regular while loop.</p>
+
+            <p style="font-weight:700;color:var(--dark);margin:18px 0 10px;">⏭️ break & continue</p>
+            <div class="code-box">
+              <div class="code-label">My Java Code</div>
+              <pre>public class BreakANDContinue {
+  public static void main(String[] args) {
+    for (int i = 1; i <= 20; i++) {
+      if (i == 8) {
+        continue;
+      }
+      if (i == 20) {
+       break;
+      }
+      System.out.println("i = " + i);
+    }
+  }
+}</pre>
+            </div>
+            <p style="font-size:0.82rem;color:var(--muted);margin:8px 0 0;">i = 8 is skipped by continue, and the loop stops completely before printing i = 20 because of break.</p>
+
+            <p style="font-size:0.86rem;color:var(--muted);font-style:italic;margin-top:8px;">
+              💡 <b>What I learned:</b> How different control flow tools fit different
+              jobs — if/switch for decisions, for/while/do-while for repetition, and
+              break/continue for controlling a loop's flow from inside. Also practised
+              printing patterns using nested loops.
+            </p>
+          </div>
+        </div>
+
+        <!-- DAY 5 -->
+        <div class="day-card fade-up d1">
+          <div class="day-header" onclick="toggleDay(this)">
+            <div class="day-badge">DAY<br>5</div>
+            <div class="day-title-wrap">
+              <div class="day-title">Day 5 — Methods / Functions</div>
+              <div class="day-subtitle">static Methods · Parameters · Reusability</div>
+            </div>
+            <i class="fas fa-chevron-down day-arrow"></i>
+          </div>
+          <div class="day-body">
+            <div style="margin-bottom:16px;">
+              <div class="topic-item"><i class="fas fa-check-circle"></i> Defining static methods with parameters</div>
+              <div class="topic-item"><i class="fas fa-check-circle"></i> Calling methods from main</div>
+              <div class="topic-item"><i class="fas fa-check-circle"></i> Breaking a program into reusable pieces</div>
+            </div>
+
+            <p style="font-weight:700;color:var(--dark);margin-bottom:10px;">🧩 Mini Project — Simple Math Functions</p>
+            <div class="code-box">
+              <div class="code-label">My Java Code</div>
+              <pre>class Day5{
+    
+    static void add(int a, int b){
+        System.out.println(a+b);
+    }
+    static void sub(int a, int b){
+        System.out.println(a-b);
+    }
+    static void square(int a){
+        System.out.println(a*a);
+    }
+    static void cube(int a){
+        System.out.println(a*a*a);
+    }
+
+    public static void main(String[]args){
+        add(4,9);
+        sub(9,4);
+        square(3);
+        cube(3);
+     }
+     
+}</pre>
+            </div>
+            <div class="result-box">
+              <div class="result-label"><i class="fas fa-terminal"></i> Sample Output</div>
+              <div class="console-box">13
+5
+9
+27</div>
+            </div>
+
+            <p style="font-size:0.86rem;color:var(--muted);font-style:italic;margin-top:8px;">
+              💡 <b>What I learned:</b> How to define methods that take parameters and
+              perform a specific task, and how breaking logic into small functions
+              (add, sub, square, cube) keeps code organized and reusable.
+            </p>
+          </div>
+        </div>
+
+        <!-- DAY 6 -->
+        <div class="day-card fade-up">
+          <div class="day-header" onclick="toggleDay(this)">
+            <div class="day-badge">DAY<br>6</div>
+            <div class="day-title-wrap">
+              <div class="day-title">Day 6 — Arrays</div>
+              <div class="day-subtitle">1D Arrays · 2D Arrays · Nested Loops</div>
+            </div>
+            <i class="fas fa-chevron-down day-arrow"></i>
+          </div>
+          <div class="day-body">
+            <div style="margin-bottom:16px;">
+              <div class="topic-item"><i class="fas fa-check-circle"></i> Declaring and sizing arrays dynamically with Scanner</div>
+              <div class="topic-item"><i class="fas fa-check-circle"></i> Storing and printing values with a for loop</div>
+              <div class="topic-item"><i class="fas fa-check-circle"></i> 2D arrays — rows and columns</div>
+              <div class="topic-item"><i class="fas fa-check-circle"></i> Nested for loops to traverse a 2D array</div>
+            </div>
+
+            <p style="font-weight:700;color:var(--dark);margin-bottom:10px;">📊 Mini Project 1 — 1D Array</p>
+            <div class="code-box">
+              <div class="code-label">My Java Code</div>
+              <pre>import java.util.*;
+public class Arrays {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("enter size: ");
+        int size = sc.nextInt();
+
+        int num[] = new int[size];
+
+        //input 
+        for(int i=0;i<size;i++){
+            num[i]=sc.nextInt();
+        }
+
+        System.out.println("array is: ");
+        for(int i=0;i<size;i++){
+            System.out.println(num[i]);
+        }
+
+    }
+    
+}</pre>
+            </div>
+
+            <p style="font-weight:700;color:var(--dark);margin:18px 0 10px;">🔲 Mini Project 2 — 2D Array</p>
+            <div class="code-box">
+              <div class="code-label">My Java Code</div>
+              <pre>import java.util.*;
+public class Array2D {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("enter size: ");
+        int row = sc.nextInt();
+        int col = sc.nextInt();
+        
+        int num[][] = new int[row][col];
+
+        //input 
+        for(int i=0;i<row;i++){
+            for(int j=0; j<col; j++){
+            num[i][j]=sc.nextInt();
+            }
+        }
+
+        System.out.println("array is: ");
+        for(int i=0;i<row;i++){
+            for(int j=0; j<col;j++){
+            System.out.println(num[i][j]+"");
+        }
+    }
+
+    }
+    
+}</pre>
+            </div>
+
+            <p style="font-weight:700;color:var(--dark);margin:18px 0 10px;">🧑‍🎓 Mini Project 3 — String Array (Homework5)</p>
+            <div class="code-box">
+              <div class="code-label">My Java Code</div>
+              <pre>import java.util.*;
+public class Homework5 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner (System.in);
+
+        String name[] = new String["size"] ;
+        System.out.println("enter size of string: ");
+        int size = sc.nextInt();
+        
+        char Name1 = sc.next().CharAt();
+        for(int i = 0; i<size; i++){
+            System.out.println("Enter name: "+Name1);
+        }
+
+        System.out.println("array is: ");
+        for(int i=0;i<size;i++){
+            System.out.println(name[i]);
+        }
+        
+    }
+}</pre>
+            </div>
+            <p style="font-size:0.82rem;color:var(--muted);margin:8px 0 0;">⚠️ This one has two bugs that stop it from compiling: <code>new String["size"]</code> should be <code>new String[size]</code> (no quotes), and <code>.CharAt()</code> should be <code>.charAt(0)</code> — Java's charAt is lowercase and needs an index.</p>
+
+            <p style="font-size:0.86rem;color:var(--muted);font-style:italic;margin-top:8px;">
+              💡 <b>What I learned:</b> How to create arrays whose size is decided at
+              runtime using Scanner, how to fill and print 1D and 2D arrays with loops,
+              and how careful I need to be with exact method names and syntax — a small
+              typo like CharAt() instead of charAt() stops the whole program from compiling.
+            </p>
+          </div>
+        </div>
+
+        <!-- DAY 7 -->
+        <div class="day-card fade-up d1">
+          <div class="day-header" onclick="toggleDay(this)">
+            <div class="day-badge">DAY<br>7</div>
+            <div class="day-title-wrap">
+              <div class="day-title">Day 7 — Constructors</div>
+              <div class="day-subtitle">Default · Parameterized · Overloaded · this()</div>
+            </div>
+            <i class="fas fa-chevron-down day-arrow"></i>
+          </div>
+          <div class="day-body">
+            <div style="margin-bottom:16px;">
+              <div class="topic-item"><i class="fas fa-check-circle"></i> Default constructors and initializing instance variables</div>
+              <div class="topic-item"><i class="fas fa-check-circle"></i> Parameterized constructors — passing values at creation</div>
+              <div class="topic-item"><i class="fas fa-check-circle"></i> Constructor overloading (multiple constructors)</div>
+              <div class="topic-item"><i class="fas fa-check-circle"></i> Using this() to call one constructor from another</div>
+            </div>
+
+            <p style="font-weight:700;color:var(--dark);margin-bottom:10px;">🏗️ Mini Project 1 — Default Constructor</p>
+            <div class="code-box">
+              <div class="code-label">My Java Code</div>
+              <pre>public class b {
+    int a; String name;
+    b(){
+        a=0;
+        name= null;
+    }
+    void show() {
+        System.out.println(a+" "+name);
+    }
+}
+class Constructor{
+    public static void main(String[] args) {
+        b r= new b();
+        r.show();
+    }
+}</pre>
+            </div>
+
+            <p style="font-weight:700;color:var(--dark);margin:18px 0 10px;">🧱 Mini Project 2 — Default Constructor with Calculation</p>
+            <div class="code-box">
+              <div class="code-label">My Java Code</div>
+              <pre>public  class Default {
+   
+    int a,b,c;
+    Default(){
+          a=10; b=20; c= a * b; 
+    }
+    void show() {
+        System.out.println( a+" "+b+ " " +c);
+    }
+}
+class DefaultConstructor{
+    public static void main(String[] args) {
+       Default r= new Default();
+        r.show();
+    }
+}</pre>
+            </div>
+            <div class="result-box">
+              <div class="result-label"><i class="fas fa-terminal"></i> Sample Output</div>
+              <div class="console-box">10 20 200</div>
+            </div>
+
+            <p style="font-weight:700;color:var(--dark);margin:18px 0 10px;">🎯 Mini Project 3 — Parameterized Constructor</p>
+            <div class="code-box">
+              <div class="code-label">My Java Code</div>
+              <pre>public class Parameterized{
+    int x ,y;
+    Parameterized (int a,int b){
+        x=a; y=b;
+    }
+    void show(){
+        System.out.println(x+" "+y);
+    }
+}
+class Parameter{
+    public static void main(String[] args) {
+        Parameterized r = new Parameterized(10 , 20);
+        r.show();
+    }
+}</pre>
+            </div>
+            <div class="result-box">
+              <div class="result-label"><i class="fas fa-terminal"></i> Sample Output</div>
+              <div class="console-box">10 20</div>
+            </div>
+
+            <p style="font-weight:700;color:var(--dark);margin:18px 0 10px;">🎓 Mini Project 4 — Student Class with Parameterized Constructor</p>
+            <div class="code-box">
+              <div class="code-label">My Java Code</div>
+              <pre>public class Student {
+    String name;
+    int age;
+    Student (String name, int age){
+        this.name = name;
+        this.age = age;
+    }
+    void display(){
+        System.out.println(this.name);
+    }
+    public static void main(String[] args) {
+         Student s1 = new Student("Raj", 18);
+        s1.display();
+    }
+    
+    }</pre>
+            </div>
+            <div class="result-box">
+              <div class="result-label"><i class="fas fa-terminal"></i> Sample Output</div>
+              <div class="console-box">Raj</div>
+            </div>
+            <p style="font-size:0.82rem;color:var(--muted);margin:8px 0 0;">this.name refers to the object's own field, separate from the constructor's name parameter — that's why "this" is needed here.</p>
+
+            <p style="font-weight:700;color:var(--dark);margin:18px 0 10px;">🔗 Mini Project 5 — Calling a Constructor from Another (this())</p>
+            <div class="code-box">
+              <div class="code-label">My Java Code</div>
+              <pre>public class CallConstructor {
+    CallConstructor(){
+        System.out.println("rajlaxmi");
+    }
+    CallConstructor(int a){
+        this(); // this() calls the default constructor above, so "rajlaxmi" prints first
+        System.out.println(a);
+    }
+    public static void main(String[] args) {
+        CallConstructor r =  new CallConstructor(100);
+    }
+    
+}</pre>
+            </div>
+            <div class="result-box">
+              <div class="result-label"><i class="fas fa-terminal"></i> Sample Output</div>
+              <div class="console-box">rajlaxmi
+100</div>
+            </div>
+
+            <p style="font-size:0.86rem;color:var(--muted);font-style:italic;margin-top:8px;">
+              💡 <b>What I learned:</b> The difference between default and parameterized
+              constructors, how this.field distinguishes an object's own variable from a
+              constructor parameter of the same name, and how this() lets one constructor
+              call another so shared setup code isn't repeated.
+            </p>
+          </div>
+        </div>
+
+        <!-- DAY 8 -->
+        <div class="day-card fade-up">
+          <div class="day-header" onclick="toggleDay(this)">
+            <div class="day-badge">DAY<br>8</div>
+            <div class="day-title-wrap">
+              <div class="day-title">Day 8 — OOP Pillars</div>
+              <div class="day-subtitle">Abstraction · Encapsulation · Inheritance · Polymorphism</div>
+            </div>
+            <i class="fas fa-chevron-down day-arrow"></i>
+          </div>
+          <div class="day-body">
+            <div style="margin-bottom:16px;">
+              <div class="topic-item"><i class="fas fa-check-circle"></i> Classes & objects, brought together with all 4 pillars</div>
+              <div class="topic-item"><i class="fas fa-check-circle"></i> Abstraction using abstract classes and interfaces</div>
+              <div class="topic-item"><i class="fas fa-check-circle"></i> Encapsulation with private fields and getters/setters</div>
+              <div class="topic-item"><i class="fas fa-check-circle"></i> Inheritance with extends and super()</div>
+              <div class="topic-item"><i class="fas fa-check-circle"></i> Polymorphism — method overloading and overriding</div>
+            </div>
+
+            <p style="font-weight:700;color:var(--dark);margin-bottom:10px;">🎓 Classes & Objects — Student</p>
+            <div class="code-box">
+              <div class="code-label">My Java Code</div>
+              <pre>class Student {
+  String name;
+  int age;
+
+  Student() {
+    System.out.println("Object Created");
+  }
+
+  void display() {
+    System.out.println("Name : " + name);
+    System.out.println("Age  : " + age);
+  }
+}
+
+public class Main {
+ public static void main(String[] args) {
+  Student s1 = new Student();
+  s1.name = "Rajlaxmi";
+  s1.age = 20;
+  s1.display();
+ }
+}</pre>
+            </div>
+            <div class="result-box">
+              <div class="result-label"><i class="fas fa-terminal"></i> Sample Output</div>
+              <div class="console-box">Object Created
+Name : Rajlaxmi
+Age  : 20</div>
+            </div>
+
+            <p style="font-weight:700;color:var(--dark);margin:18px 0 10px;">🔒 Encapsulation — private Fields with Getters/Setters</p>
+            <div class="code-box">
+              <div class="code-label">My Java Code</div>
+              <pre>public class Encapsulation{
+    private int value;
+    public void setvalue(int value){
+        this.value = value;
+    }
+    public int getvalue(){
+        return value;
+    }
+}
+class B1{
+    public static void main(String[] args) {
+       Encapsulation s = new Encapsulation();
+        s.setvalue(10);
+        System.out.println("value is: "+s.getvalue());
+    }
+}</pre>
+            </div>
+            <div class="result-box">
+              <div class="result-label"><i class="fas fa-terminal"></i> Sample Output</div>
+              <div class="console-box">value is: 10</div>
+            </div>
+
+            <p style="font-weight:700;color:var(--dark);margin:18px 0 10px;">🔐 Encapsulation Practice</p>
+            <div class="code-box">
+              <div class="code-label">My Java Code</div>
+              <pre>public class En {
+    private int value;
+    public void setvalue(int value){
+        this.value=value;
+    }
+    public int getvalue(){
+        return value;
+    }
+}
+class Main2{
+    public static void main(String[] args) {
+        En s = new En();
+        s.setvalue(10);
+        System.out.println("Value is"+s.getvalue());
+    }
+}</pre>
+            </div>
+            <div class="result-box">
+              <div class="result-label"><i class="fas fa-terminal"></i> Sample Output</div>
+              <div class="console-box">Value is10</div>
+            </div>
+
+            <p style="font-weight:700;color:var(--dark);margin:18px 0 10px;">🚙 Inheritance — Vehicle & Car</p>
+            <div class="code-box">
+              <div class="code-label">My Java Code</div>
+              <pre>class Vehicle {
+    Vehicle(String name) {
+        System.out.println("Vehicle: " + name);
+    }
+}
+ 
+class Car extends Vehicle {
+    Car(String name) {
+        super(name);
+    }
+}
+ 
+public class Inheritance{
+    public static void main(String[] args) {
+        Car c = new Car("Tesla");
+    }
+}</pre>
+            </div>
+            <div class="result-box">
+              <div class="result-label"><i class="fas fa-terminal"></i> Sample Output</div>
+              <div class="console-box">Vehicle: Tesla</div>
+            </div>
+
+            <p style="font-weight:700;color:var(--dark);margin:18px 0 10px;">🐕 Polymorphism — Method Overriding</p>
+            <div class="code-box">
+              <div class="code-label">My Java Code</div>
+              <pre>class Animal {
+    void sound() {
+        System.out.println("Animal Sound");
+    }
+}
+ 
+class Dog extends Animal {
+    void sound() {
+        System.out.println("Dog Barks");
+    }
+}
+ 
+public class Polymorphism {
+    public static void main(String[] args) {
+        Dog d = new Dog();
+        d.sound();
+        d.sound();
+    }
+}</pre>
+            </div>
+            <div class="result-box">
+              <div class="result-label"><i class="fas fa-terminal"></i> Sample Output</div>
+              <div class="console-box">Dog Barks
+Dog Barks</div>
+            </div>
+
+            <p style="font-weight:700;color:var(--dark);margin:18px 0 10px;">🎭 All 4 Pillars Together</p>
+            <div class="code-box">
+              <div class="code-label">My Java Code</div>
+              <pre>abstract class Vehicle {                 // Abstraction
+    private String name;                 // Encapsulation
+    public Vehicle(String name) { this.name = name; }
+    public String getName() { return name; }   // Getter
+    abstract void start();               // no body here
+    void start(String mode) {            // Overloading
+        System.out.println(getName() + " starting: " + mode);
+    }
+}
+class Car extends Vehicle {              // Inheritance
+    public Car(String name) { super(name); }
+    void start() {                       // Overriding
+        System.out.println(getName() + " engine started");
+    }
+}
+public class AllPillars {
+    public static void main(String[] args) {
+        Car c = new Car("Tesla");
+        c.start();
+        c.start("Sport");
+    }
+}</pre>
+            </div>
+            <div class="result-box">
+              <div class="result-label"><i class="fas fa-terminal"></i> Sample Output</div>
+              <div class="console-box">Tesla engine started
+Tesla starting: Sport</div>
+            </div>
+
+            <p style="font-weight:700;color:var(--dark);margin:18px 0 10px;">🧾 Abstraction with Interfaces</p>
+            <div class="code-box">
+              <div class="code-label">My Java Code</div>
+              <pre>interface Payable {
+    void pay();
+}
+ 
+class Employee implements Payable {
+    public void pay() {
+        System.out.println("Salary Paid");
+    }
+}
+ 
+public class Abstraction {
+    public static void main(String[] args) {
+        Employee e = new Employee();
+        e.pay();
+    }
+}</pre>
+            </div>
+            <div class="result-box">
+              <div class="result-label"><i class="fas fa-terminal"></i> Sample Output</div>
+              <div class="console-box">Salary Paid</div>
+            </div>
+
+            <p style="font-size:0.86rem;color:var(--muted);font-style:italic;margin-top:8px;">
+              💡 <b>What I learned:</b> How all 4 pillars of OOP work together — encapsulation
+              hides data behind getters/setters, inheritance lets a child class reuse a
+              parent's behaviour via extends/super, polymorphism lets the same method act
+              differently depending on the object (overloading and overriding), and
+              abstraction hides implementation details behind abstract classes and
+              interfaces.
+            </p>
+          </div>
+        </div>
+
+        <!-- Reflection -->
+        <div class="content-block fade-up">
+          <h2><i class="fas fa-pen"></i> My Overall Reflection</h2>
+          <p>
+            Over these 8 days, Java took me from printing simple text to writing
+            complete object-oriented programs. I started with basics and input
+            handling, moved through operators, loops, methods, and arrays, and
+            finished by combining all four pillars of OOP — abstraction,
+            encapsulation, inheritance, and polymorphism — into a single program.
+          </p>
+          <p>
+            Everything I practised here came together in my featured project, the
+            Contact Management System, which uses classes, constructors, file
+            handling, and input validation — the same core concepts covered
+            day by day in this module.
+          </p>
+        </div>
+
+      </div><!-- end mod-main -->
+
+      <!-- SIDEBAR -->
+      <div class="mod-sidebar">
+
+        <div class="sidebar-card fade-up d2">
+          <h3>My Progress</h3>
+          <div class="progress-item">
+            <div class="progress-label"><span>Java Basics</span><span>100%</span></div>
+            <div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div>
+          </div>
+          <div class="progress-item">
+            <div class="progress-label"><span>Control Flow & Operators</span><span>90%</span></div>
+            <div class="progress-bar"><div class="progress-fill" style="width:90%"></div></div>
+          </div>
+          <div class="progress-item">
+            <div class="progress-label"><span>Arrays & Methods</span><span>80%</span></div>
+            <div class="progress-bar"><div class="progress-fill" style="width:80%"></div></div>
+          </div>
+          <div class="progress-item">
+            <div class="progress-label"><span>OOP Concepts</span><span>65%</span></div>
+            <div class="progress-bar"><div class="progress-fill" style="width:65%"></div></div>
+          </div>
+        </div>
+
+        <div class="sidebar-card fade-up d2">
+          <h3>Days Covered</h3>
+          <div class="detail-item"><i class="fas fa-check-circle" style="color:#10b981;"></i> Day 1 — Java Basics</div>
+          <div class="detail-item"><i class="fas fa-check-circle" style="color:#10b981;"></i> Day 2 — Input & Data Types</div>
+          <div class="detail-item"><i class="fas fa-check-circle" style="color:#10b981;"></i> Day 3 — Operators</div>
+          <div class="detail-item"><i class="fas fa-check-circle" style="color:#10b981;"></i> Day 4 — Loops & Control Flow</div>
+          <div class="detail-item"><i class="fas fa-check-circle" style="color:#10b981;"></i> Day 5 — Methods</div>
+          <div class="detail-item"><i class="fas fa-check-circle" style="color:#10b981;"></i> Day 6 — Arrays</div>
+          <div class="detail-item"><i class="fas fa-check-circle" style="color:#10b981;"></i> Day 7 — Constructors</div>
+          <div class="detail-item"><i class="fas fa-check-circle" style="color:#10b981;"></i> Day 8 — OOP Pillars</div>
+        </div>
+
+        <div class="sidebar-card fade-up d3">
+          <h3>Module Details</h3>
+          <div class="detail-item"><i class="fas fa-tag"></i> Module 08 of 10</div>
+          <div class="detail-item"><i class="fas fa-layer-group"></i> Digital FABLAB</div>
+          <div class="detail-item"><i class="fas fa-university"></i> SSGMCE, Shegaon</div>
+          <div class="detail-item"><i class="fas fa-user"></i> Rajlaxmi Rede</div>
+          <div class="detail-item"><i class="fas fa-calendar"></i> 2025</div>
+        </div>
+
+        <div class="sidebar-card fade-up">
+          <h3>Useful Resources</h3>
+          <a href="https://docs.oracle.com/en/java/" target="_blank" class="res-link"><i class="fas fa-external-link-alt"></i> Official Java Docs</a>
+          <a href="https://www.w3schools.com/java/" target="_blank" class="res-link"><i class="fas fa-external-link-alt"></i> W3Schools Java</a>
+          <a href="https://www.geeksforgeeks.org/java/" target="_blank" class="res-link"><i class="fas fa-external-link-alt"></i> GeeksforGeeks Java</a>
+        </div>
+
+        <div class="sidebar-card fade-up">
+          <h3>Other Modules</h3>
+          <a href="web-development.html"   class="res-link"><i class="fas fa-code"></i> Web Development</a>
+          <a href="ui-ux-design.html"      class="res-link"><i class="fas fa-palette"></i> UI/UX Design</a>
+          <a href="cad-design.html"        class="res-link"><i class="fas fa-drafting-compass"></i> CAD Design</a>
+          <a href="3d-printing.html"       class="res-link"><i class="fas fa-print"></i> 3D Printing</a>
+          <a href="lasercutting.html"      class="res-link"><i class="fas fa-cut"></i> Laser Cutting</a>
+          <a href="pcb-design.html"        class="res-link"><i class="fas fa-bolt"></i> PCB Design</a>
+          <a href="iot.html"               class="res-link"><i class="fas fa-wifi"></i> IoT</a>
+          <a href="networking.html"        class="res-link"><i class="fas fa-network-wired"></i> Networking</a>
+          <a href="ai-ml.html"             class="res-link"><i class="fas fa-robot"></i> AI / ML</a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="footer-logo">
+            <i class="fas fa-microchip"></i> Rajlaxmi <span>FABLAB</span>
+          </a>
+          <p class="footer-desc">Portfolio showcasing my learning journey through the Digital FABLAB program at SSGMCE Shegaon.</p>
+        </div>
+        <div class="footer-col">
+          <h4 class="fc-title">Quick Links</h4>
+          <ul class="flinks">
+            <li><a href="index.html#home">Home</a></li>
+            <li><a href="index.html#about">About</a></li>
+            <li><a href="index.html#modules">Modules</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4 class="fc-title">All Modules</h4>
+          <ul class="flinks">
+            <li><a href="web-development.html">Web Development</a></li>
+            <li><a href="cad-design.html">CAD Design</a></li>
+            <li><a href="3d-printing.html">3D Printing</a></li>
+            <li><a href="iot.html">IoT</a></li>
+            <li><a href="java-programming.html">Java Programming</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4 class="fc-title">Resources</h4>
+          <ul class="flinks">
+            <li><a href="https://developer.mozilla.org" target="_blank">MDN Web Docs</a></li>
+            <li><a href="https://docs.oracle.com/en/java/" target="_blank">Java Docs</a></li>
+            <li><a href="raj_resume.pdf" target="_blank">My Resume</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 Digital FABLAB Portfolio · Crafted by <span>Rajlaxmi Rede</span></p>
+      </div>
+    </div>
+  </footer>
+
+  <button class="btt" id="backToTop"><i class="fas fa-chevron-up"></i></button>
+
+  <script>
+    /* Navbar */
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 20);
+      document.getElementById('backToTop').classList.toggle('visible', window.scrollY > 400);
+    }, { passive:true });
+    document.getElementById('backToTop').addEventListener('click', () =>
+      window.scrollTo({ top:0, behavior:'smooth' })
+    );
+
+    /* Hamburger */
+    const ham = document.getElementById('hamburger');
+    const mob = document.getElementById('navMenu');
+    ham.addEventListener('click', () => {
+      ham.classList.toggle('open');
+      mob.classList.toggle('open');
+    });
+
+    /* Scroll Reveal */
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+      });
+    }, { threshold: 0.06 });
+    document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+
+    /* Day Accordion */
+    function toggleDay(header) {
+      const body   = header.nextElementSibling;
+      const isOpen = body.classList.contains('open');
+      document.querySelectorAll('.day-body').forEach(b => b.classList.remove('open'));
+      document.querySelectorAll('.day-header').forEach(h => h.classList.remove('open'));
+      if (!isOpen) {
+        body.classList.add('open');
+        header.classList.add('open');
+      }
+    }
+  </script>
+</body>
+</html>
